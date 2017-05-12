@@ -1,0 +1,34 @@
+{
+  "name": "app-experiment-behavior",
+  "homepage": "https://github.com/Collaborne/app-experiment-behavior",
+  "authors": [
+    "Collaborne B.V. <opensource@collaborne.com>"
+  ],
+  "description": "Polymer 1.x behavior for simple A/B/... experiments",
+  "main": "app-experiment-behavior.html",
+  "keywords": [
+    "web-components",
+    "polymer",
+    "experiment",
+    "abtesting"
+  ],
+  "license": "Apache-2.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.9.1"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.1.9",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0",
+    "paper-input": "PolymerElements/paper-input#^1.1.24",
+    "paper-material": "PolymerElements/paper-material#^1.0.7",
+    "paper-styles": "PolymerElements/paper-styles#^1.2.1",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.2.6"
+  }
+}

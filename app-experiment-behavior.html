@@ -1,0 +1,126 @@
+<!doctype html>
+
+<link rel="import" href="../polymer/polymer.html">
+
+<script>
+
+/**
+ * Property in local storage that stores overrides for experiments
+ */
+const OVERRIDE_PROPERTY = 'app-experiment-behavior-overrides';
+
+/**
+ * Oracles for use with AppExperimentBehavior.
+ *
+ * Each oracle takes information about the viewer and the values for the experiment, and provides
+ * as result one of the values given.
+ *
+ * Oracles should be "consistent", and provide the same answer for the same viewer.
+ */
+const Oracle = {
+	/**
+	 * Return a value based on hashing the viewer information.
+	 */
+	VIEWER_HASH(extractViewerId) {
+		return function(viewer, values) {
+			const id = extractViewerId(viewer);
+
+			let hash;
+			for (i = 0; i < id.length; i++) {
+				const chr = id.charCodeAt(i);
+				hash = ((hash << 5) - hash) + chr;
+				hash |= 0; // Convert to 32bit integer
+			}
+
+			return values[hash % values.length];
+		};
+	},
+
+	/**
+	 * Always return the provided value.
+	 *
+	 * Note that this doesn't check whether the value is valid in relation to the experiment.
+	 */
+	ALWAYS(value) {
+		return function(viewer, values) {
+			return value;
+		};
+	}
+};
+
+/**
+ * Behavior for experiments
+ *
+ * This provides consistent experiment selection based on the redux state.
+ *
+ * The behavior expects a property 'viewer' that contains whatever the app has as a viewer. The default oracle assumes
+ * that this property is a string, but this can be changed by providing a custom mapping function for the VIEWER_HASH oracle.
+ *
+ * @param {string} experimentName
+ * @param {Array<string>} values supported names of experiments; the first one is supposed to be the neutral or base experiment.
+ * @param {Object} options options for conducting the experiment
+ */
+// 'property' can be used to enable multiple experiments in the same component: each must use a different property value
+const Behavior = function(experimentName, values, { viewerFilter = (viewer) => true, property = 'experiment', oracle = Oracle.VIEWER_HASH(viewer => viewer) }) {
+	return {
+		properties: {
+			[property]: {
+				type: String,
+				computed: `_getExperiment(experimentViewer, ${property}_override)`
+			},
+
+			[`${property}_override`]: {
+				type: String,
+				value: function() {
+					const NO_OVERRIDE = '';
+
+					// Load the override value for this experiment from local storage. This is intended for development only
+					// to quickly switch values for a single experiment globally. For users to be able to opt-out the oracle should
+					// be adjusted to allow this (for example by querying the server for information)
+					if (window.localStorage) {
+						const experimentOverrides = JSON.parse(window.localStorage.getItem(OVERRIDE_PROPERTY) || '{}');
+						return experimentOverrides[experimentName] || NO_OVERRIDE;
+					}
+
+					return NO_OVERRIDE;
+				}
+			},
+		},
+
+		_getExperiment: function(viewer, overrideValue) {
+			let value = overrideValue;
+			if (!value && viewerFilter(viewer)) {
+				value = oracle(viewer, values);
+			}
+
+			if (!value || values.indexOf(value) === -1) {
+				value = values[0];
+			}
+			return value;
+		},
+	};
+}
+
+/**
+ * @demo demo/index.html
+ * @polymerBehavior Polymer.AppExperiment.Behavior
+ */
+Polymer.AppExperiment = {
+	Oracle,
+	Behavior,
+	overrideExperiment(experimentName, value) {
+		if (window.localStorage) {
+			const overrides = JSON.parse(window.localStorage.getItem(OVERRIDE_PROPERTY) || '{}');
+			if (value) {
+				overrides[experimentName] = value;
+			} else if (overrides.hasOwnProperty(experimentName)) {
+				delete overrides[experimentName];
+			}
+
+			window.localStorage.setItem(OVERRIDE_PROPERTY, JSON.stringify(overrides))
+		}
+	}
+}
+
+
+</script>
