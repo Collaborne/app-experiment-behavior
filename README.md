@@ -4,6 +4,9 @@ _[Demo and API Docs](http://collaborne.github.io/app-experiment-behavior)_
 
 Polymer 1.x behavior for simple A/B/... experiments
 
+### Usage
+
+**See this [blog post](https://medium.com/collaborne-engineering/a-b-testing-made-easy-with-polymer-7038b22779af) for a detailed tutorial.**
 
 Using this behavior is (fairly) easy:
 
