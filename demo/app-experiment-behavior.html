@@ -11,7 +11,7 @@
 		<link rel="import" href="../../paper-styles/demo-pages.html">
 		<link rel="import" href="../app-experiment-behavior.html">
 
-  
+
 		<style is="custom-style" include="demo-pages-shared-styles">
 		</style>
 	</head>
@@ -29,34 +29,36 @@
 			</template>
 
 			<script>
-				// Simple example for how to set the oracle with a custom extraction function.
-				const oracle = Polymer.AppExperiment.Oracle.VIEWER_HASH(viewerId => viewerId);
+				window.addEventListener('WebComponentsReady', function(e) {
+					// Simple example for how to set the oracle with a custom extraction function.
+					const oracle = Polymer.AppExperiment.Oracle.VIEWER_HASH(viewerId => viewerId);
 
-				Polymer({
-					is: 'experiment-component',
+					Polymer({
+						is: 'experiment-component',
 
-					properties: {
-						experimentViewer: Object,
+						properties: {
+							experimentViewer: Object,
 
-						_greeting: {
-							type: String,
-							computed: '_computeGreeting(experiment)'
+							_greeting: {
+								type: String,
+								computed: '_computeGreeting(experiment)'
+							}
+						},
+
+						behaviors: [
+							Polymer.AppExperiment.Behavior('experiment-component:greeting', [ 'world', 'universe' ], { oracle })
+						],
+
+						_computeGreeting(experiment) {
+							const greetings = {
+								'world': 'Hello, World!',
+								'universe': 'Jo, Universe!'
+							}
+
+							return greetings[experiment];
 						}
-					},
-
-					behaviors: [
-						Polymer.AppExperiment.Behavior('experiment-component:greeting', [ 'world', 'universe' ], { oracle })
-					],
-
-					_computeGreeting(experiment) {
-						const greetings = {
-							'world': 'Hello, World!',
-							'universe': 'Jo, Universe!'
-						}
-
-						return greetings[experiment];
-					}
-				})
+					});
+				});
 			</script>
 		</dom-module>
 
@@ -65,7 +67,7 @@
 			<demo-snippet>
 				<template is="dom-bind">
 					<paper-input label="viewer" value="{{viewer}}"></paper-input>
-					<experiment-component experiment-viewer="{{viewer}}"></experiment-component>	
+					<experiment-component experiment-viewer="{{viewer}}"></experiment-component>
 				</template>
 			</demo-snippet>
 		</div>
@@ -75,6 +77,6 @@
 			scopes.forEach(function(scope) {
 				scope.viewer = 'user1';
 			});
-		</script>		
+		</script>
 	</body>
 </html>
