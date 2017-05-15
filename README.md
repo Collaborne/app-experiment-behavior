@@ -31,7 +31,7 @@ After that you need to reference the behavior and provide the viewer information
 			is: 'experiment-component',
 
 			properties: {
-				experimentViewer: Object,
+				experimentViewer: String,
 
 				_greeting: {
 					type: String,
