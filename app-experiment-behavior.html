@@ -66,22 +66,22 @@ const Behavior = function(experimentName, values, { viewerFilter = (viewer) => t
 		properties: {
 			[property]: {
 				type: String,
-				computed: `_getExperiment(experimentViewer, ${property}_override)`
+				computed: `_getExperiment(experimentViewer, ${property}Override)`
 			},
 
-			[`${property}_name`]: {
+			[`${property}Name`]: {
 				type: String,
 				value: experimentName,
 				readOnly: true
 			},
 
-			[`${property}_values`]: {
+			[`${property}Values`]: {
 				type: Array,
 				value: values,
 				readOnly: true
 			},
 
-			[`${property}_override`]: {
+			[`${property}Override`]: {
 				type: String,
 				value: function() {
 					const NO_OVERRIDE = '';
