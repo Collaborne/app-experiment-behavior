@@ -23,6 +23,11 @@ const Oracle = {
 	 */
 	VIEWER_HASH(extractViewerId) {
 		return function(viewer, values) {
+			if (!viewer || !values) {
+				// Ignore initialization call
+				return;
+			}
+
 			const id = extractViewerId(viewer);
 
 			let hash;
@@ -59,6 +64,8 @@ const Oracle = {
  * @param {string} experimentName
  * @param {Array<string>} values supported names of experiments; the first one is supposed to be the neutral or base experiment.
  * @param {Object} options options for conducting the experiment
+ *
+ * @demo demo/index.html
  */
 // 'property' can be used to enable multiple experiments in the same component: each must use a different property value
 const Behavior = function(experimentName, values, { viewerFilter = (viewer) => true, property = 'experiment', oracle = Oracle.VIEWER_HASH(viewer => viewer) }) {

@@ -1,12 +1,37 @@
 <!doctype html>
 <html>
 	<head>
+		<title>Demo</title>
 		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+		<link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+		<link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+		<link rel="import" href="../../paper-input/paper-input.html">
+		<link rel="import" href="experiment-component.html">
+
+		<style is="custom-style" include="demo-pages-shared-styles"></style>
 	</head>
 
 	<body>
-		<ul>
-			<li><a href="app-experiment-behavior.html">Behavior</a></li>
-		</ul>
+		<div class="vertical-section-container centered">
+			<h3>Simple experiment selection based on viewer id</h3>
+			<demo-snippet>
+				<template>
+					<dom-bind>
+						<template>
+							<experiment-component experiment-viewer="[[viewer]]"></experiment-component>
+							<paper-input label="viewer" value="{{viewer}}"></paper-input>
+						</template>
+					</dom-bind>
+				</template>
+			</demo-snippet>
+		</div>
+
+		<script>
+			const scopes = document.querySelectorAll("dom-bind");
+			scopes.forEach(function(scope) {
+				scope.viewer = 'user1';
+			});
+		</script>
 	</body>
 </html>

@@ -2,7 +2,7 @@ _[Demo and API Docs](http://collaborne.github.io/app-experiment-behavior)_
 
 # app-experiment-behavior [![Bower version](https://badge.fury.io/bo/app-experiment-behavior.svg)](http://badge.fury.io/bo/app-experiment-behavior) [![Build Status](https://travis-ci.org/Collaborne/app-experiment-behavior.svg?branch=master)](https://travis-ci.org/Collaborne/app-experiment-behavior)
 
-Polymer 1.x behavior for simple A/B/... experiments
+Polymer behavior for simple A/B/... experiments
 
 ### Usage
 
