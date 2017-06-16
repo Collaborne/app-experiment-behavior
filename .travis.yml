@@ -19,7 +19,3 @@ before_script:
 - $(npm bin)/polylint --no-recursion
 script:
 - echo 'No tests yet'
-after_success: '[ ${TRAVIS_PULL_REQUEST} = "false" ] && [ ${TRAVIS_BRANCH} = "master" ] && $(npm bin)/bower install -s https://${GH_TOKEN}@github.com/Collaborne/collaborne-build-tools.git && bower_components/collaborne-build-tools/gpages_build.sh Collaborne info@collaborne.com'
-env:
-  secure: "YQA6AuCkt1OUyNQ46UyQLIygiap04yxpG548XZs3Lst6hMJYn7FPsXEPBl+rvd95QZSwYoV1SHuSOcdum+MP9Km/eOhjTzufjmANgo8e9Pnhn3PQZOadGjS7C30QYGes7lNctQR2XbJzDY1ifIq0jfH9zW6npMEpzSg+yNIyNgs/XkLpcJ58OQJ4v5yZapvCzu8bpsxoSbIVt6X1ngdb3pg418NbW4aXfnPAUXeFCf/v4yzDZoiWMYabwB0ZQa4e+XDVbYkxUOKyjKTGdtjpfAnhpwqAv6ENoMIOU4+ggDaICMOCSx4uec4V4DYuSFQca45XMtJonFI4VlPXAGzvIO+ukscfaEIe5ud15Zpih//XhC3FPbjaSGVgG+psFBSjNLWtmQJzGswr5YZkHOwOmrardasPZaJnUTJF4b4wfG+36EAVd1KvOCEz1kvXxMloMjabJAQOL3voqH6y9bbZZGfQni/4utBn+iUnSJS7gD8mEXgpa/SeA6exnrIKeXUAgx48XgjeqV+gGRr+0+wB1hnMnaFkx9aVB90YyGPIUnLx3tnlcz6RfV0CJg1haqtjmXiQ2k8t9Rp0ze3C9wvZ8mdNT966XBuAi2f20tLWf9qg90KH144Qd5IWlh9DqQ5SOWeVDso/FbVDwtxf8RILRXc7lznoWNf1vC+/z9pQh5k="
-

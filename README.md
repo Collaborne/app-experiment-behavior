@@ -1,6 +1,4 @@
-_[Demo and API Docs](http://collaborne.github.io/app-experiment-behavior)_
-
-# app-experiment-behavior [![Bower version](https://badge.fury.io/bo/app-experiment-behavior.svg)](http://badge.fury.io/bo/app-experiment-behavior) [![Build Status](https://travis-ci.org/Collaborne/app-experiment-behavior.svg?branch=master)](https://travis-ci.org/Collaborne/app-experiment-behavior)
+# app-experiment-behavior [![Bower version](https://badge.fury.io/bo/app-experiment-behavior.svg)](http://badge.fury.io/bo/app-experiment-behavior) [![Build Status](https://travis-ci.org/Collaborne/app-experiment-behavior.svg?branch=master)](https://travis-ci.org/Collaborne/app-experiment-behavior) [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/Collaborne/app-experiment-behavior)
 
 Polymer behavior for simple A/B/... experiments
 
