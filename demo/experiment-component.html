@@ -1,0 +1,48 @@
+<!doctype html>
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../app-experiment-behavior.html">
+
+<dom-module id="experiment-component">
+	<template>
+		<style>
+			:host {
+				margin: 2em;
+			}
+		</style>
+
+		<div>[[_greeting]]</div>
+	</template>
+</dom-module>
+
+<script>
+(function() {
+	// Simple example for how to set the oracle with a custom extraction function.
+	const oracle = Polymer.AppExperiment.Oracle.VIEWER_HASH(viewerId => viewerId);
+
+	Polymer({
+		is: 'experiment-component',
+
+		properties: {
+			experimentViewer: Object,
+
+			_greeting: {
+				type: String,
+				computed: '_computeGreeting(experiment)'
+			}
+		},
+
+		behaviors: [
+			Polymer.AppExperiment.Behavior('experiment-component:greeting', [ 'world', 'universe' ], { oracle })
+		],
+
+		_computeGreeting(experiment) {
+			const greetings = {
+				'world': 'Hello, World!',
+				'universe': 'Jo, Universe!'
+			}
+
+			return greetings[experiment];
+		}
+	});
+})();
+</script>
