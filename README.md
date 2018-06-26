@@ -1,5 +1,8 @@
 # app-experiment-behavior [![Bower version](https://badge.fury.io/bo/app-experiment-behavior.svg)](http://badge.fury.io/bo/app-experiment-behavior) [![Build Status](https://travis-ci.org/Collaborne/app-experiment-behavior.svg?branch=master)](https://travis-ci.org/Collaborne/app-experiment-behavior) [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/Collaborne/app-experiment-behavior)
 
+[![Published on Vaadin  Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/Collaborneapp-experiment-behavior)
+[![Stars on vaadin.com/directory](https://img.shields.io/vaadin-directory/star/Collaborneapp-experiment-behavior.svg)](https://vaadin.com/directory/component/Collaborneapp-experiment-behavior)
+
 Polymer behavior for simple A/B/... experiments
 
 ### Usage
